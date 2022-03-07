@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FilmController!{% endblock %}
+
+{% form_theme formulaire 'bootstrap_5_layout.html.twig' %}
+
+{% block body %}
+
+        h1>Modifier ce film </h1>
+
+        {{ form_start(formulaire) }}
+
+        {{ form_row(formulaire.nom) }}
+        <br>
+        {{ form_row(formulaire.resume) }}
+        <br>
+        {{ form_row(formulaire.realisateur) }}
+        <br>
+
+        <button type="submit" class="btn btn-success">Modifier ce film</button>
+
+        <br><br>
+
+        {{ form_end(formulaire) }}
+
+        <a href="{{ path('film') }}" class="btn btn-primary">Retour aux films</a>
+        <br>
+
+{% endblock %}

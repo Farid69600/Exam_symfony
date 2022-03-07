@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FilmController!{% endblock %}
+
+{% block body %}
+
+        <hr>
+        <h4><strong>Nom du film : </strong>{{ film.nom }}</h4>
+        <h4>Résumé : {{ film.resume }}</h4>
+        <h4>Réalisateur : {{ film.realisateur }}</h4>
+        <h3>Date de sortie : <br>{{ film.releasedAt|date('Y') }}</h3>
+
+        <a href="{{ path('films') }}" class="btn btn-primary">Retour aux films</a>
+<br><br>
+        <a href="{{ path('supprimerfilm', { id:film.id}) }}" class="btn btn-danger">Supprimer ce film</a>
+
+    <br><br>
+        {#        affichage formulaire de saisie d'impression#}
+        {{ form_start(formulaireImpression, {'action':path('impression_new', {id:film.id})}) }}
+
+        {{ form_widget(formulaireImpression.content, {'attr': {'placeholder': "saississez votre impression"}}) }}
+        <br> <br>
+        <button type="submit" class="btn btn-success">Poster votre impression</button>
+        {{ form_end(formulaireImpression) }}
+
+        <div>
+                {% for impression in film.impressions %}
+                        <hr>
+                        <h3>Impression : </h3>
+                        <p>{{ impression.content }}</p>
+                        <hr>
+                {% endfor %}
+        </div>
+                <button type="submit" class="btn btn-success">Poster votre impression</button>
+
+{% endblock %}
